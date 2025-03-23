@@ -1,24 +1,24 @@
+import string
 import random
 import time
-mot_de_passe = input("Choisir le mot de passe: ")  # le mot de passe à trouver
+
+mot_de_passe = input("Choisir le mot de passe: ")  # mod de passe a trouve
 
 
-def mot_aleatoire(longueur):
-    lettres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-               'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    mot_genere = ""
-    for carac in range(0, longueur):
-        mot_genere = mot_genere + lettres[random.randint(0, len(lettres) - 1)]
-    return mot_genere
+def mot_aleatoire():
+    lettres = string.digits + string.ascii_letters + string.punctuation
+    suiv = ""
+    resultat = ""
+    for i in range(len(mot_de_passe)):
+        while mot_de_passe[i] != suiv:
+            print(resultat + suiv)
+#            time.sleep(0.05)
+            suiv = random.choice(lettres)
+        resultat += suiv
+    return resultat
 
 
 debut = time.time()
-while True:
-    mot_alea = mot_aleatoire(len(mot_de_passe))
-    print("Mot de passe teste: " + mot_alea)
-    if mot_de_passe == mot_alea:
-        print("Mot de passe trouve: " + mot_alea)
-        fin = time.time() - debut
-        print("Trouve en " + str(fin) + " second")
-        break
-print("Hello Hrun")
+print(mot_aleatoire())
+fin = time.time() - debut
+print("Trouve en " + str(fin) + " second")
